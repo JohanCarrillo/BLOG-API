@@ -4,11 +4,16 @@ import AbstractRouter from "./utils/abstractRouter";
 import { PostService } from "../service/post.service";
 
 export class PostRoutes extends AbstractRouter {
-	postService: PostService;
+	postService!: PostService;
+	private static instance: PostRoutes;
 
 	constructor(app: Application, name: string, postService: PostService) {
+		if (PostRoutes.instance) {
+			return PostRoutes.instance;
+		}
 		super(app, name);
 		this.postService = postService;
+		PostRoutes.instance = this;
 	}
 
 	configureRoutes(): Application {

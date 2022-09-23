@@ -1,4 +1,4 @@
-import Express, { Application, Request, Response } from "express";
+import Express, { Application } from "express";
 import dotenv from "dotenv";
 
 import bindRoutes from "./routes/utils/indexRoutes";

@@ -4,12 +4,16 @@ import AbstractRouter from "./utils/abstractRouter";
 import { HomeService } from "../service/home.service";
 
 export class HomeRoutes extends AbstractRouter {
-	homeService: HomeService;
+	homeService!: HomeService;
+	private static instance: HomeRoutes;
 
 	constructor(app: Application, name: string, homeService: HomeService) {
-		console.log("creating HomeRoutes instance");
+		if (HomeRoutes.instance) {
+			return HomeRoutes.instance;
+		}
 		super(app, name);
 		this.homeService = homeService;
+		HomeRoutes.instance = this;
 	}
 
 	configureRoutes(): Application {
