@@ -11,7 +11,6 @@ export class HomeService {
 	}
 
 	getHome(req: Request, res: Response): Response {
-		console.log("home service");
-		return res.status(200).json({ message: "Home page in contruction" });
+		return res.status(200).json({ message: "Home page in construction" });
 	}
 }
