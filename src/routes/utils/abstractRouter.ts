@@ -1,4 +1,5 @@
-import { Application, Router } from "express";
+import { Application, NextFunction, Request, Response } from "express";
+import { type } from "os";
 
 export default abstract class AbstractRoutes {
 	app: Application;
@@ -13,5 +14,6 @@ export default abstract class AbstractRoutes {
 		return this.name;
 	}
 
+	// add routes to the app
 	abstract configureRoutes(): Application;
 }
