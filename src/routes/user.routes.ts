@@ -2,7 +2,7 @@ import { Application } from "express";
 
 import AbstractRouter from "./utils/abstractRouter";
 import { UserService } from "../service/user.service";
-import { ProtectionService } from "src/service/protection.service";
+import { ProtectionService } from "../service/protection.service";
 
 export class UserRoutes extends AbstractRouter {
 	private userService!: UserService;
@@ -21,7 +21,7 @@ export class UserRoutes extends AbstractRouter {
 		super(app, name);
 		this.userService = userService;
 		UserRoutes.instance = this;
-		this.protectionService = this.protectionService;
+		this.protectionService = protectionService;
 	}
 
 	configureRoutes(): Application {

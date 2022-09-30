@@ -21,6 +21,8 @@ export class ProtectionService {
 	public isAdmin(req: Request, res: Response, next: NextFunction) {
 		// check if user is logged | token is valid
 		// check if the request comes from an admin
+		console.log("isadmin");
+		next();
 	}
 
 	public isResourceOwnerOrAdmin(

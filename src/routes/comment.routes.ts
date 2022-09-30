@@ -2,7 +2,7 @@ import { Application } from "express";
 
 import AbstractRouter from "./utils/abstractRouter";
 import { CommentService } from "../service/comment.service";
-import { ProtectionService } from "src/service/protection.service";
+import { ProtectionService } from "../service/protection.service";
 
 export class CommentRoutes extends AbstractRouter {
 	private commentService!: CommentService;
