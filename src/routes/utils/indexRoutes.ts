@@ -9,6 +9,9 @@ import { CommentService } from "../../service/comment.service";
 import { UserRoutes } from "../user.routes";
 import { UserService } from "../../service/user.service";
 import { ProtectionService } from "../../service/protection.service";
+import { debug } from "debug";
+
+const debugLog: debug.IDebugger = debug("indexRouter");
 
 export default function bindRoutes(app: Application) {
 	const routes = [
@@ -25,5 +28,6 @@ export default function bindRoutes(app: Application) {
 
 	routes.forEach((route: AbstractRouter): void => {
 		route.configureRoutes();
+		debugLog(`Routes configured for ${route.getName()}`);
 	});
 }

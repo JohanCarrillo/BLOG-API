@@ -4,11 +4,11 @@
 	"description": "",
 	"main": "main.ts",
 	"scripts": {
-		"start": "ts-node ./src/main.ts",
+		"start": "tsc && node --unhandled-rejections=strict ./dist/main.js",
+		"start:ts-node": "ts-node ./src/main.ts",
 		"start:dev": "ts-node-dev --respawn ./src/main.ts",
-		"start:prod": "node dist/main",
+		"start:prod": "node ./dist/main.js",
 		"start:test": "echo \"Error: no test specified\" && exit 1",
-		"transpile": "tsc && node --unhandled-rejections=strict ./dist/main.js",
 		"debug": "export DEBUG=* && npm run start"
 	},
 	"keywords": [],
@@ -19,6 +19,8 @@
 		"@types/debug": "^4.1.7",
 		"@types/express": "^4.17.14",
 		"@types/node": "^18.7.18",
+		"@types/winston": "^2.4.4",
+		"source-map-support": "^0.5.21",
 		"ts-node": "^10.9.1",
 		"ts-node-dev": "^2.0.0",
 		"typescript": "^4.8.4"
@@ -27,6 +29,8 @@
 		"cors": "^2.8.5",
 		"debug": "^4.3.4",
 		"dotenv": "^16.0.2",
-		"express": "^4.18.1"
+		"express": "^4.18.1",
+		"express-winston": "^4.2.0",
+		"winston": "^3.8.2"
 	}
 }
