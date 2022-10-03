@@ -1,6 +1,6 @@
 import { Application } from "express";
 
-import AbstractRouter from "./utils/abstractRouter";
+import AbstractRouter from "../utils/abstractRouter";
 import { HomeService } from "../service/home.service";
 
 export class HomeRoutes extends AbstractRouter {

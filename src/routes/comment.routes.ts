@@ -1,6 +1,6 @@
 import { Application } from "express";
 
-import AbstractRouter from "./utils/abstractRouter";
+import AbstractRouter from "../utils/abstractRouter";
 import { CommentService } from "../service/comment.service";
 import { ProtectionService } from "../service/protection.service";
 

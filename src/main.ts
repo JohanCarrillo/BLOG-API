@@ -18,6 +18,7 @@ function main() {
 	app.use(Express.json()); // body-parser to json
 	app.use(Express.urlencoded({ extended: false })); // parser from url
 	app.use(cors());
+
 	// req logger
 	app.use(expressWinston.logger(loggerOptions));
 

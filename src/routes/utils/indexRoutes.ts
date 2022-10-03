@@ -1,13 +1,13 @@
 import { Application } from "express";
 import { HomeService } from "../../service/home.service";
 import { PostService } from "../../service/post.service";
-import AbstractRouter from "./abstractRouter";
+import AbstractRouter from "../../utils/abstractRouter";
 import { HomeRoutes } from "../home.routes";
 import { PostRoutes } from "../post.routes";
 import { CommentRoutes } from "../comment.routes";
 import { CommentService } from "../../service/comment.service";
-import { UserRoutes } from "../user.routes";
-import { UserService } from "../../service/user.service";
+import { UserRoutes } from "../../user/user.routes";
+import { UserService } from "../../user/user.service";
 import { ProtectionService } from "../../service/protection.service";
 import { debug } from "debug";
 
