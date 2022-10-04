@@ -6,4 +6,6 @@ export interface CreatePostDto {
 	images?: string[];
 	published?: boolean;
 	author: string;
+	created_at: string;
+	updated_at: string;
 }

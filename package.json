@@ -9,7 +9,9 @@
 		"start:dev": "ts-node-dev --respawn ./src/main.ts",
 		"start:prod": "node ./dist/main.js",
 		"start:test": "echo \"Error: no test specified\" && exit 1",
-		"debug": "export DEBUG=* && npm run start"
+		"debug": "export DEBUG=* && npm run start",
+		"docker:init": "docker-compose  up -d",
+		"docker:down": "docker-compose down"
 	},
 	"keywords": [],
 	"author": "",
@@ -20,12 +22,14 @@
 		"@types/express": "^4.17.14",
 		"@types/node": "^18.7.18",
 		"@types/winston": "^2.4.4",
+		"prisma": "^4.4.0",
 		"source-map-support": "^0.5.21",
 		"ts-node": "^10.9.1",
 		"ts-node-dev": "^2.0.0",
 		"typescript": "^4.8.4"
 	},
 	"dependencies": {
+		"@prisma/client": "^4.4.0",
 		"cors": "^2.8.5",
 		"debug": "^4.3.4",
 		"dotenv": "^16.0.2",

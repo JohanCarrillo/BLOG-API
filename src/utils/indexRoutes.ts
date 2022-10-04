@@ -12,7 +12,6 @@ import { CommentService } from "../comment/comment.service";
 import { UserService } from "../user/user.service";
 
 const debugLog: debug.IDebugger = debug("indexRouter");
-const userService = new UserService();
 
 export default function bindRoutes(app: Application) {
 	const routes = [

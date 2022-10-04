@@ -17,8 +17,10 @@ export class PostController {
 	getAllPosts = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const posts = await this.postService.getAll();
-			if (posts == null)
+			if (posts == null) {
 				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(posts);
 			// handle errors for wrong input and server
 		} catch (error) {
 			next(error);
@@ -28,7 +30,10 @@ export class PostController {
 	getPostById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const post = await this.postService.getById(req.params.postId);
-			if (post == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (post == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(post);
 			// handle errors for wrong input and server
 		} catch (error) {
 			next(error);
@@ -42,8 +47,10 @@ export class PostController {
 	) => {
 		try {
 			const posts = await this.postService.getByAuthorId(req.params.authorId);
-			if (posts == null)
+			if (posts == null) {
 				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(posts);
 			// handle errors for wrong input and server
 		} catch (error) {
 			next(error);
@@ -54,7 +61,10 @@ export class PostController {
 		try {
 			// we have to ensure that the req.body we pass fulfills the dto structure
 			const post = await this.postService.create(req.body);
-			if (post == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (post == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(201).json(post);
 		} catch (error) {
 			next(error);
 		}
@@ -63,7 +73,10 @@ export class PostController {
 	deletePostById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const post = await this.postService.deleteById(req.params.postId);
-			if (post == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (post == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(post);
 		} catch (error) {
 			next(error);
 		}
@@ -73,7 +86,10 @@ export class PostController {
 		try {
 			// we have to ensure that the req.body we pass fulfills the dto structure
 			const post = await this.postService.putById(req.params.postId, req.body);
-			if (post == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (post == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(post);
 			// if req.body !== PostPutDto res.status(401).json({error: "wrong input"})
 		} catch (error) {
 			next(error);
@@ -87,7 +103,10 @@ export class PostController {
 				req.params.postId,
 				req.body
 			);
-			if (post == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (post == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(post);
 			// if req.body !== PatchPutDto res.status(401).json({error: "wrong input"})
 		} catch (error) {
 			next(error);

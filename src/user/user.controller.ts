@@ -23,6 +23,7 @@ export class UserController {
 		try {
 			// we have to ensure that the req.body we pass fulfills the dto structure
 			const user = await this.userService.create(req.body);
+			res.status(201).json(user);
 			// handle errors for wrong input and server
 		} catch (error) {
 			next(error);
@@ -32,8 +33,10 @@ export class UserController {
 	getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const users = await this.userService.getAll();
-			if (users == null)
+			if (users == null) {
 				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(users);
 		} catch (error) {
 			next(error);
 		}
@@ -42,7 +45,10 @@ export class UserController {
 	getUserById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.getById(req.params.userId);
-			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (user == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(user);
 		} catch (error) {
 			next();
 		}
@@ -51,7 +57,10 @@ export class UserController {
 	getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.getByEmail(req.params.userEmail);
-			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (user == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(user);
 		} catch (error) {
 			next(error);
 		}
@@ -60,7 +69,10 @@ export class UserController {
 	deleteUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.deleteById(req.params.userId);
-			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (user == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(user);
 		} catch (error) {
 			next(error);
 		}
@@ -69,7 +81,10 @@ export class UserController {
 	putUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.putById(req.params.userId, req.body);
-			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (user == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(user);
 		} catch (error) {
 			next(error);
 		}
@@ -81,7 +96,10 @@ export class UserController {
 				req.params.userId,
 				req.body
 			);
-			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
+			if (user == null) {
+				res.status(404).json({ error: ErrorMessages.error404 });
+			}
+			res.status(200).json(user);
 		} catch (error) {
 			next(error);
 		}
