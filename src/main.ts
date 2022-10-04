@@ -1,6 +1,5 @@
 import Express, { Application } from "express";
 import dotenv from "dotenv";
-// import * as winston from "winston"; // logger
 import * as expressWinston from "express-winston";
 import cors from "cors"; // used to allow access to the API from multiple fronts
 import debug from "debug"; // debugger

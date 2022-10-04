@@ -1,6 +1,8 @@
+import debug from "debug";
+
 import { NextFunction, Request, Response } from "express";
 import { UserService } from "./user.service";
-import debug from "debug";
+import ErrorMessages from "../utils/errorMessages.enum";
 
 const debugLog: debug.IDebugger = debug("userController");
 
@@ -29,10 +31,9 @@ export class UserController {
 
 	getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			await this.userService.getAll();
-			// const users = await this.userService.getAll();
-			// if (users == null) res.status(404).json({ msj: "no users found" });
-			res.json({ msj: "all users" });
+			const users = await this.userService.getAll();
+			if (users == null)
+				res.status(404).json({ error: ErrorMessages.error404 });
 		} catch (error) {
 			next(error);
 		}
@@ -41,7 +42,7 @@ export class UserController {
 	getUserById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.getById(req.params.userId);
-			if (user == null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
 		} catch (error) {
 			next();
 		}
@@ -50,7 +51,7 @@ export class UserController {
 	getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.getByEmail(req.params.userEmail);
-			if (user == null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
 		} catch (error) {
 			next(error);
 		}
@@ -59,7 +60,7 @@ export class UserController {
 	deleteUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.deleteById(req.params.userId);
-			if (user == null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
 		} catch (error) {
 			next(error);
 		}
@@ -68,7 +69,7 @@ export class UserController {
 	putUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.putById(req.params.userId, req.body);
-			if (user == null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
 		} catch (error) {
 			next(error);
 		}
@@ -80,7 +81,7 @@ export class UserController {
 				req.params.userId,
 				req.body
 			);
-			if (user == null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ error: ErrorMessages.error404 });
 		} catch (error) {
 			next(error);
 		}
