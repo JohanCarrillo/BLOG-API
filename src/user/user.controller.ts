@@ -1,9 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import { UserService } from "./user.service";
+import debug from "debug";
+
+const debugLog: debug.IDebugger = debug("userController");
 
 export class UserController {
 	private static instance: UserController;
-	private userService!: UserService;
+	private userService: UserService;
 
 	constructor(userService: UserService) {
 		if (UserController.instance) {
@@ -11,9 +14,11 @@ export class UserController {
 		}
 		this.userService = userService;
 		UserController.instance = this;
+		debugLog(
+			"UserController.UserService: ",
+			UserController.instance.userService
+		);
 	}
-
-	// all methods must be endpoints
 
 	async createUser(req: Request, res: Response, next: NextFunction) {
 		try {
@@ -25,14 +30,16 @@ export class UserController {
 		}
 	}
 
-	async getAllUsers(req: Request, res: Response, next: NextFunction) {
+	getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			const users = await this.userService.getAll();
-			if (users == null) res.status(404).json({ msj: "no users found" });
+			await this.userService.getAll();
+			// const users = await this.userService.getAll();
+			// if (users == null) res.status(404).json({ msj: "no users found" });
+			res.json({ msj: "all users" });
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
 	async getUserById(req: Request, res: Response, next: NextFunction) {
 		try {

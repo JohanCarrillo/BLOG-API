@@ -1,3 +1,4 @@
+import { debug } from "debug";
 import { Application } from "express";
 import { PostController } from "../post/post.controller";
 import AbstractRouter from "./abstractRouter";
@@ -6,12 +7,12 @@ import { CommentRoutes } from "../comment/comment.routes";
 import { CommentController } from "../comment/comment.controller";
 import { UserRoutes } from "../user/user.routes";
 import { UserController } from "../user/user.controller";
-import { debug } from "debug";
-import { PostService } from "src/post/post.service";
-import { CommentService } from "src/comment/comment.service";
-import { UserService } from "src/user/user.service";
+import { PostService } from "../post/post.service";
+import { CommentService } from "../comment/comment.service";
+import { UserService } from "../user/user.service";
 
 const debugLog: debug.IDebugger = debug("indexRouter");
+const userService = new UserService();
 
 export default function bindRoutes(app: Application) {
 	const routes = [

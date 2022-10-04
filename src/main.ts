@@ -8,7 +8,7 @@ import debug from "debug"; // debugger
 dotenv.config();
 
 import loggerOptions from "./config/logger.config";
-import bindRoutes from "./routes/utils/indexRoutes";
+import bindRoutes from "./utils/indexRoutes";
 
 function main() {
 	const app: Application = Express();
