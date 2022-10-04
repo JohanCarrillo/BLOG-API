@@ -14,48 +14,52 @@ export class CommentService implements CRUD<CreateCommentDto> {
 		CommentService.instance = this;
 	}
 
-	async getAll(): Promise<CreateCommentDto[] | void> {
+	getAll = async (): Promise<CreateCommentDto[] | void> => {
 		// search all comments and return them
-	}
+	};
 
-	async getById(commentId: string): Promise<CreateCommentDto | void> {
+	getById = async (commentId: string): Promise<CreateCommentDto | void> => {
 		// search for comment in db using id
 		// return comment
-	}
+	};
 
-	async getByPostId(postId: string): Promise<CreateCommentDto[] | void> {
+	getByPostId = async (postId: string): Promise<CreateCommentDto[] | void> => {
 		// search for comments in db using post id
 		// return comments array
-	}
+	};
 
-	async getByAuthorId(authorId: string): Promise<CreateCommentDto[] | void> {
+	getByAuthorId = async (
+		authorId: string
+	): Promise<CreateCommentDto[] | void> => {
 		// search for comments in db using user id
 		// return comments array
-	}
+	};
 
-	async create(comment: CreateCommentDto): Promise<CreateCommentDto | void> {
+	create = async (
+		comment: CreateCommentDto
+	): Promise<CreateCommentDto | void> => {
 		// sanitize comment and save it in db
 		// return saved comment
-	}
+	};
 
-	async deleteById(commentId: string): Promise<CreateCommentDto | void> {
+	deleteById = async (commentId: string): Promise<CreateCommentDto | void> => {
 		// search comment in db and delete it
 		// return deleted comment
-	}
+	};
 
-	async putById(
+	putById = async (
 		commentId: string,
 		updateComment: PutCommentDto
-	): Promise<CreateCommentDto | void> {
+	): Promise<CreateCommentDto | void> => {
 		// search comment in db and update it
 		// return updated comment
-	}
+	};
 
-	async patchById(
+	patchById = async (
 		commentId: string,
 		updateCommentFields: PatchCommentDto
-	): Promise<CreateCommentDto | void> {
+	): Promise<CreateCommentDto | void> => {
 		// search comment in db and update it
 		// return updated comment
-	}
+	};
 }

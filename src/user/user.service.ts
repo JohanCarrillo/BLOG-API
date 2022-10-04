@@ -12,51 +12,50 @@ export class UserService implements CRUD<CreateUserDto> {
 
 	constructor() {
 		if (UserService.instance) {
-			debugLog("user service instance ccalled");
 			return UserService.instance;
 		}
 		UserService.instance = this;
 		debugLog("user service created");
 	}
 
-	async getAll(): Promise<CreateUserDto[] | void> {
+	getAll = async (): Promise<CreateUserDto[] | void> => {
 		// search all users and return them
 		console.log("get all users");
-	}
+	};
 
-	async getById(userId: string): Promise<CreateUserDto | void> {
+	getById = async (userId: string): Promise<CreateUserDto | void> => {
 		// search for user in db using id
 		// return user
-	}
+	};
 
-	async getByEmail(userEmail: string): Promise<CreateUserDto | void> {
+	getByEmail = async (userEmail: string): Promise<CreateUserDto | void> => {
 		// search for user in db using email
 		// return user
-	}
+	};
 
-	async create(user: CreateUserDto): Promise<CreateUserDto | void> {
+	create = async (user: CreateUserDto): Promise<CreateUserDto | void> => {
 		// sanitize user and save it in db
 		// return saved user
-	}
+	};
 
-	async deleteById(userId: string): Promise<CreateUserDto | void> {
+	deleteById = async (userId: string): Promise<CreateUserDto | void> => {
 		// search user in db and delete it
 		// return deleted user
-	}
+	};
 
-	async putById(
+	putById = async (
 		userId: string,
 		updateUser: PutUserDto
-	): Promise<CreateUserDto | void> {
+	): Promise<CreateUserDto | void> => {
 		// search user in db and update it
 		// return updated user
-	}
+	};
 
-	async patchById(
+	patchById = async (
 		userId: string,
 		updateUserFields: PatchUserDto
-	): Promise<CreateUserDto | void> {
+	): Promise<CreateUserDto | void> => {
 		// search user in db and update it
 		// return updated user
-	}
+	};
 }

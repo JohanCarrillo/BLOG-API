@@ -16,7 +16,7 @@ export class PostRoutes extends AbstractRouter {
 		PostRoutes.instance = this;
 	}
 
-	configureRoutes(): Application {
+	configureRoutes = (): Application => {
 		this.app.get("/posts", this.postController.getAllPosts);
 
 		this.app.get("/posts/:postId", this.postController.getPostById);
@@ -33,5 +33,5 @@ export class PostRoutes extends AbstractRouter {
 		this.app.patch("/posts/:postId", this.postController.patchPostById);
 
 		return this.app;
-	}
+	};
 }

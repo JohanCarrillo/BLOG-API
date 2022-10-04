@@ -13,7 +13,7 @@ export class CommentController {
 		CommentController.instance = this;
 	}
 
-	async getAllComments(req: Request, res: Response, next: NextFunction) {
+	getAllComments = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const comments = await this.commentService.getAll();
 			if (comments == null) res.status(404).json({ msj: "comment not found" });
@@ -21,9 +21,9 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async getCommentById(req: Request, res: Response, next: NextFunction) {
+	getCommentById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const comment = await this.commentService.getById(req.params.commentId);
 			if (comment == null) res.status(404).json({ msj: "comment not found" });
@@ -31,8 +31,12 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
-	async getCommentsByPostId(req: Request, res: Response, next: NextFunction) {
+	};
+	getCommentsByPostId = async (
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) => {
 		try {
 			// if (post == null) res.status(404).json({ msj: "comment not found" });
 			const comments = await this.commentService.getByPostId(req.params.postId);
@@ -41,8 +45,12 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
-	async getCommentsByAuthorId(req: Request, res: Response, next: NextFunction) {
+	};
+	getCommentsByAuthorId = async (
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) => {
 		try {
 			// if (author == null) res.status(404).json({ msj: "comment not found" });
 			const comments = await this.commentService.getByAuthorId(
@@ -53,9 +61,9 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async createComment(req: Request, res: Response, next: NextFunction) {
+	createComment = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// we have to make sure that the req.body fulfills the dto
 			const comment = await this.commentService.create(req.body);
@@ -64,9 +72,13 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async deleteCommentById(req: Request, res: Response, next: NextFunction) {
+	deleteCommentById = async (
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) => {
 		try {
 			const comment = await this.commentService.deleteById(req.params.id);
 			if (comment == null) res.status(404).json({ msj: "comment not found" });
@@ -74,9 +86,9 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async putCommentById(req: Request, res: Response, next: NextFunction) {
+	putCommentById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// we have to make sure that the req.body fulfills the dto
 			const comment = await this.commentService.putById(
@@ -89,9 +101,13 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async patchCommentById(req: Request, res: Response, next: NextFunction) {
+	patchCommentById = async (
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) => {
 		try {
 			// we have to make sure that the req.body fulfills the dto
 			const comment = await this.commentService.patchById(
@@ -104,5 +120,5 @@ export class CommentController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 }

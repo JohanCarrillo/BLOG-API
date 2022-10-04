@@ -14,13 +14,10 @@ export class UserController {
 		}
 		this.userService = userService;
 		UserController.instance = this;
-		debugLog(
-			"UserController.UserService: ",
-			UserController.instance.userService
-		);
+		debugLog("user controller created");
 	}
 
-	async createUser(req: Request, res: Response, next: NextFunction) {
+	createUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// we have to ensure that the req.body we pass fulfills the dto structure
 			const user = await this.userService.create(req.body);
@@ -28,7 +25,7 @@ export class UserController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
 	getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 		try {
@@ -41,43 +38,43 @@ export class UserController {
 		}
 	};
 
-	async getUserById(req: Request, res: Response, next: NextFunction) {
+	getUserById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.getById(req.params.userId);
 			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next();
 		}
-	}
+	};
 
-	async getUserByEmail(req: Request, res: Response, next: NextFunction) {
+	getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.getByEmail(req.params.userEmail);
 			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async deleteUser(req: Request, res: Response, next: NextFunction) {
+	deleteUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.deleteById(req.params.userId);
 			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async putUser(req: Request, res: Response, next: NextFunction) {
+	putUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.putById(req.params.userId, req.body);
 			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async patchUser(req: Request, res: Response, next: NextFunction) {
+	patchUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const user = await this.userService.patchById(
 				req.params.userId,
@@ -87,5 +84,5 @@ export class UserController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 }

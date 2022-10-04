@@ -13,7 +13,7 @@ export class PostController {
 		PostController.instance = this;
 	}
 
-	async getAllPosts(req: Request, res: Response, next: NextFunction) {
+	getAllPosts = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const posts = await this.postService.getAll();
 			if (posts == null) res.status(404).json({ msj: "post not found" });
@@ -21,9 +21,9 @@ export class PostController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async getPostById(req: Request, res: Response, next: NextFunction) {
+	getPostById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const post = await this.postService.getById(req.params.postId);
 			if (post == null) res.status(404).json({ msj: "post not found" });
@@ -31,9 +31,13 @@ export class PostController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async getPostsByAuthorId(req: Request, res: Response, next: NextFunction) {
+	getPostsByAuthorId = async (
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) => {
 		try {
 			const posts = await this.postService.getByAuthorId(req.params.authorId);
 			if (posts == null) res.status(404).json({ msj: "post not found" });
@@ -41,9 +45,9 @@ export class PostController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async createPost(req: Request, res: Response, next: NextFunction) {
+	createPost = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// we have to ensure that the req.body we pass fulfills the dto structure
 			const post = await this.postService.create(req.body);
@@ -51,17 +55,18 @@ export class PostController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 
-	async deletePostById(req: Request, res: Response, next: NextFunction) {
+	deletePostById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const post = await this.postService.deleteById(req.params.postId);
 			if (post == null) res.status(404).json({ msj: "post not found" });
 		} catch (error) {
 			next(error);
 		}
-	}
-	async putPostById(req: Request, res: Response, next: NextFunction) {
+	};
+
+	putPostById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// we have to ensure that the req.body we pass fulfills the dto structure
 			const post = await this.postService.putById(req.params.postId, req.body);
@@ -70,8 +75,9 @@ export class PostController {
 		} catch (error) {
 			next(error);
 		}
-	}
-	async patchPostById(req: Request, res: Response, next: NextFunction) {
+	};
+
+	patchPostById = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// we have to ensure that the req.body we pass fulfills the dto structure
 			const post = await this.postService.patchById(
@@ -83,5 +89,5 @@ export class PostController {
 		} catch (error) {
 			next(error);
 		}
-	}
+	};
 }

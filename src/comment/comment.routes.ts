@@ -20,7 +20,7 @@ export class CommentRoutes extends AbstractRouter {
 		CommentRoutes.instance = this;
 	}
 
-	configureRoutes(): Application {
+	configureRoutes = (): Application => {
 		// get all comments
 		this.app.get("/comments", this.commentController.getAllComments);
 
@@ -52,5 +52,5 @@ export class CommentRoutes extends AbstractRouter {
 		);
 
 		return this.app;
-	}
+	};
 }

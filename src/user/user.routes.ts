@@ -16,7 +16,7 @@ export class UserRoutes extends AbstractRouter {
 		UserRoutes.instance = this;
 	}
 
-	configureRoutes(): Application {
+	configureRoutes = (): Application => {
 		this.app.post("/users", this.userController.createUser);
 
 		// protected routes
@@ -33,5 +33,5 @@ export class UserRoutes extends AbstractRouter {
 		this.app.patch("/users/:userId", this.userController.patchUser);
 
 		return this.app;
-	}
+	};
 }
