@@ -1,9 +1,9 @@
 import { Application } from "express";
 import { HomeService } from "../../service/home.service";
-import { PostService } from "../../service/post.service";
+import { PostService } from "../../post/post.service";
 import AbstractRouter from "../../utils/abstractRouter";
 import { HomeRoutes } from "../home.routes";
-import { PostRoutes } from "../post.routes";
+import { PostRoutes } from "../../post/post.routes";
 import { CommentRoutes } from "../comment.routes";
 import { CommentService } from "../../service/comment.service";
 import { UserRoutes } from "../../user/user.routes";
@@ -23,7 +23,7 @@ export default function bindRoutes(app: Application) {
 			new CommentService(),
 			new ProtectionService()
 		),
-		new UserRoutes(app, "users", new UserService(), new ProtectionService()),
+		new UserRoutes(app, "users", new UserService()),
 	];
 
 	routes.forEach((route: AbstractRouter): void => {
