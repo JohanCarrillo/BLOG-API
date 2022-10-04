@@ -28,7 +28,7 @@ export class UserController {
 	async getAllUsers(req: Request, res: Response, next: NextFunction) {
 		try {
 			const users = await this.userService.getAll();
-			if (users === null) res.status(404).json({ msj: "no users found" });
+			if (users == null) res.status(404).json({ msj: "no users found" });
 		} catch (error) {
 			next(error);
 		}
@@ -37,7 +37,7 @@ export class UserController {
 	async getUserById(req: Request, res: Response, next: NextFunction) {
 		try {
 			const user = await this.userService.getById(req.params.userId);
-			if (user === null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next();
 		}
@@ -46,7 +46,7 @@ export class UserController {
 	async getUserByEmail(req: Request, res: Response, next: NextFunction) {
 		try {
 			const user = await this.userService.getByEmail(req.params.userEmail);
-			if (user === null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next(error);
 		}
@@ -55,7 +55,7 @@ export class UserController {
 	async deleteUser(req: Request, res: Response, next: NextFunction) {
 		try {
 			const user = await this.userService.deleteById(req.params.userId);
-			if (user === null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next(error);
 		}
@@ -64,7 +64,7 @@ export class UserController {
 	async putUser(req: Request, res: Response, next: NextFunction) {
 		try {
 			const user = await this.userService.putById(req.params.userId, req.body);
-			if (user === null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next(error);
 		}
@@ -76,7 +76,7 @@ export class UserController {
 				req.params.userId,
 				req.body
 			);
-			if (user === null) res.status(404).json({ msj: "User not found" });
+			if (user == null) res.status(404).json({ msj: "User not found" });
 		} catch (error) {
 			next(error);
 		}

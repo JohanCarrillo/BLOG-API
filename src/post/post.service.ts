@@ -23,6 +23,11 @@ export class PostService implements CRUD<CreatePostDto> {
 		// return post
 	}
 
+	async getByAuthorId(authorId: string): Promise<CreatePostDto[] | void> {
+		// search for post in db using user id
+		// return post
+	}
+
 	async create(post: CreatePostDto): Promise<CreatePostDto | void> {
 		// sanitize post and save it in db
 		// return saved post

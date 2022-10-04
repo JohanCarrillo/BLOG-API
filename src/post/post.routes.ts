@@ -18,7 +18,10 @@ export class PostRoutes extends AbstractRouter {
 
 	configureRoutes(): Application {
 		this.app.get("/posts", this.postController.getAllPosts);
+
 		this.app.get("/posts/:postId", this.postController.getPostById);
+
+		this.app.get("/posts/:authorId", this.postController.getPostsByAuthorId);
 
 		// protected routes
 		this.app.post("/posts", this.postController.createPost);
