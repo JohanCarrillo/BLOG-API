@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 
-export class ProtectionService {
-	private static instance: ProtectionService;
+export class ProtectionMiddleware {
+	private static instance: ProtectionMiddleware;
 
 	constructor() {
-		if (ProtectionService.instance) {
-			return ProtectionService.instance;
+		if (ProtectionMiddleware.instance) {
+			return ProtectionMiddleware.instance;
 		}
-		ProtectionService.instance = this;
+		ProtectionMiddleware.instance = this;
 	}
 
 	private typeOfUser(token: any): string {
