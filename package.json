@@ -13,7 +13,7 @@
 		"start:prod": "node ./dist/main.js",
 		"start:test": "echo \"Error: no test specified\" && exit 1",
 		"debug": "export DEBUG=* && npm run start",
-		"docker:init": "docker-compose  up -d",
+		"docker:up": "docker-compose up -d",
 		"docker:down": "docker-compose down"
 	},
 	"keywords": [],

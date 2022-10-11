@@ -3,14 +3,14 @@ version: "3.8"
 services:
   postgres:
     env_file: .env
-    image: postgres:12.4
-    container_name: postgres_db_container
+    image: postgres:14.3
+    container_name: blog-api-container
     restart: always
 
     environment:
-      - POSTGRES_USER: ${DB_USER}
-      - POSTGRES_PASSWORD: ${DB_PASSWORD}
-      - POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
 
     ports:
       - ${DB_PORT}:5432
