@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "main.ts",
 	"prisma": {
-		"schema": "./src/db/prisma/schema.prisma"
+		"schema": "./src/db/prisma/schema.prisma",
+		"seed": "ts-node ./src/db/prisma/seed.ts"
 	},
 	"scripts": {
 		"start": "tsc && node --unhandled-rejections=strict ./dist/main.js",
@@ -14,7 +15,8 @@
 		"start:test": "echo \"Error: no test specified\" && exit 1",
 		"debug": "export DEBUG=* && npm run start",
 		"docker:up": "docker-compose up -d",
-		"docker:down": "docker-compose down"
+		"docker:down": "docker-compose down",
+		"seed": "npx prisma db seed"
 	},
 	"keywords": [],
 	"author": "",
