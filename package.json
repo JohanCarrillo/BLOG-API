@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "main.ts",
 	"prisma": {
-		"schema": "./src/db/schema.prisma"
+		"schema": "./src/db/prisma/schema.prisma"
 	},
 	"scripts": {
 		"start": "tsc && node --unhandled-rejections=strict ./dist/main.js",

@@ -7,7 +7,7 @@ export interface CreatePostDto {
 	title: string;
 	content: string;
 	summary: string;
-	imagesUrl?: string[];
+	imagesUrl?: {};
 	published?: boolean;
 	author: CreateUserDto;
 	createdAt: Date;

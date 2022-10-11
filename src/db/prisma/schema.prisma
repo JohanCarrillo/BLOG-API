@@ -27,10 +27,10 @@ model Post {
   title      String
   content    String
   summary    String
-  imagesUrl  String[]
+  imagesUrl  Json
   published  Boolean?   @default(false)
   author     User       @relation(fields: [authorId], references: [id])
-  authorId   String     @unique // this is the foreign key
+  authorId   String     @unique
   categories Category[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime?  @default(now())
@@ -44,7 +44,7 @@ model Comment {
   post      Post        @relation(fields: [postId], references: [id])
   postId    String      @unique
   author    User        @relation(fields: [authorId], references: [id])
-  authorId  String
+  authorId  String      @unique
   content   String
   createdAt DateTime    @default(now())
   updatedAt DateTime?   @default(now())
