@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "main.ts",
+	"prisma": {
+		"schema": "./src/db/schema.prisma"
+	},
 	"scripts": {
 		"start": "tsc && node --unhandled-rejections=strict ./dist/main.js",
 		"start:ts-node": "ts-node ./src/main.ts",

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { CommentService } from "./comment.service";
-import ErrorMessages from "../utils/errorMessages.enum";
+import ErrorMessages from "../utils/enums/errorMessages.enum";
 
 export class CommentController {
 	private static instance: CommentController;

@@ -2,7 +2,7 @@ import debug from "debug";
 
 import { NextFunction, Request, Response } from "express";
 import { UserService } from "./user.service";
-import ErrorMessages from "../utils/errorMessages.enum";
+import ErrorMessages from "../utils/enums/errorMessages.enum";
 
 const debugLog: debug.IDebugger = debug("userController");
 

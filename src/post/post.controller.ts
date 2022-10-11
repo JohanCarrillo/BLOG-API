@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import ErrorMessages from "../utils/errorMessages.enum";
+import ErrorMessages from "../utils/enums/errorMessages.enum";
 import { PostService } from "./post.service";
 
 export class PostController {
