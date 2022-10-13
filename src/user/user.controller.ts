@@ -3,6 +3,7 @@ import debug from "debug";
 import { NextFunction, Request, Response } from "express";
 import { UserService } from "./user.service";
 import ErrorMessages from "../utils/enums/errorMessages.enum";
+import ResponseMessages from "../utils/enums/responseMessages.enum";
 
 const debugLog: debug.IDebugger = debug("userController");
 
@@ -33,8 +34,8 @@ export class UserController {
 	getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const users = await this.userService.getAll();
-			if (users == null) {
-				res.status(404).json({ error: ErrorMessages.error404 });
+			if (users.length === 0) {
+				res.status(200).json({ message: ResponseMessages.emptyResource });
 			}
 			res.status(200).json(users);
 		} catch (error) {

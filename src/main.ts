@@ -8,8 +8,9 @@ dotenv.config();
 
 import loggerOptions from "./config/logger.config";
 import bindRoutes from "./utils/indexRoutes";
+import prisma from "./db/prisma/prismaClient";
 
-function main() {
+async function main() {
 	const app: Application = Express();
 	const debugLog: debug.IDebugger = debug("app");
 
@@ -29,9 +30,17 @@ function main() {
 
 	const port: number = Number(process.env.SERVER_PORT) || 3000;
 	app.listen(port, (): void => {
-		console.log(`listening on port ${port}`);
+		console.info(`listening on port ${port}`);
 		debugLog("started in debug mode");
 	});
 }
 
-main();
+main()
+	.then(async () => {
+		await prisma.$disconnect();
+	})
+	.catch(async e => {
+		console.error(e);
+		await prisma.$disconnect();
+		process.exit(1);
+	});
