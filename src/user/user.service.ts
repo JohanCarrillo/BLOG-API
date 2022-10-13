@@ -1,10 +1,11 @@
 import debug from "debug";
 import prisma from "../db/prisma/prismaClient";
-import { User } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 import { CRUD } from "../utils/CRUD.interface";
 import { CreateUserDto } from "./dto/create.user.dto";
 import { PatchUserDto } from "./dto/patch.user.dto";
 import { PutUserDto } from "./dto/put.user.dto";
+import returnUserConfig from "./utils/returnUser.config";
 
 const debugLog: debug.IDebugger = debug("userService");
 
@@ -19,45 +20,84 @@ export class UserService implements CRUD<User> {
 		debugLog("user service created");
 	}
 
-	getAll = async (): Promise<User[]> => {
-		const users = await prisma.user.findMany({});
+	getAll = async (): Promise<Partial<User>[]> => {
+		const users = await prisma.user.findMany({ select: returnUserConfig });
 		return users;
 	};
 
-	getById = async (userId: string): Promise<User | null> => {
-		const user = await prisma.user.findUnique({ where: { id: userId } });
+	getById = async (userId: string): Promise<Partial<User> | null> => {
+		const user = await prisma.user.findUnique({
+			where: { id: userId },
+			select: returnUserConfig,
+		});
 		return user;
 	};
 
-	getByEmail = async (userEmail: string): Promise<User | null> => {
-		const user = await prisma.user.findUnique({ where: { email: userEmail } });
+	getByEmail = async (userEmail: string): Promise<Partial<User> | null> => {
+		const user = await prisma.user.findUnique({
+			where: { email: userEmail },
+			select: returnUserConfig,
+		});
 		return user;
 	};
 
-	create = async (newUser: CreateUserDto): Promise<User | void> => {
+	create = async (newUser: CreateUserDto): Promise<Partial<User>> => {
 		const user = await prisma.user.create({
 			data: {
 				email: newUser.email,
 				name: newUser.name,
+				password: newUser.password || null, // newUser.password === undefined -> password = null
+			},
+			select: {
+				email: true,
+				name: true,
+				role: true,
 			},
 		});
+		return user;
 	};
 
-	deleteById = async (userId: string): Promise<User | void> => {};
+	deleteById = async (userId: string): Promise<Partial<User>> => {
+		const user = await prisma.user.delete({
+			where: { id: userId },
+			select: returnUserConfig,
+		});
+		return user;
+	};
 
 	putById = async (
 		userId: string,
-		updateUser: PutUserDto
-	): Promise<User | void> => {
-		// search user in db and update it
-		// return updated user
+		updateUser: Partial<User>
+	): Promise<Partial<User>> => {
+		const user = this.getById(userId);
+		if (user == null) {
+			throw new Prisma.PrismaClientKnownRequestError(
+				"User not found",
+				"P2001",
+				"^4.4.0"
+			);
+		}
+
+		const updatedUser = prisma.user.update({
+			where: { id: userId },
+			data: {
+				...user,
+				...updateUser,
+			},
+			select: returnUserConfig,
+		});
+		return updatedUser;
 	};
 
 	patchById = async (
 		userId: string,
-		updateUserFields: PatchUserDto
-	): Promise<User | void> => {
-		// search user in db and update it
-		// return updated user
+		updateUserFields: Partial<User>
+	): Promise<Partial<User>> => {
+		const user = prisma.user.update({
+			where: { id: userId },
+			data: { ...updateUserFields },
+			select: returnUserConfig,
+		});
+		return user;
 	};
 }

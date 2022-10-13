@@ -16,7 +16,7 @@ model User {
   email     String      @unique
   name      String
   password  String?
-  role      Role?       @default(USER)
+  role      Role        @default(USER)
   
   // relations
   posts     Post[]
@@ -31,7 +31,7 @@ model Post {
   imagesUrl  Json
   createdAt  DateTime   @default(now())
   updatedAt  DateTime?  @default(now())
-  published  Boolean?   @default(false)
+  published  Boolean   @default(false)
 
   // relations
   author     User       @relation(fields: [authorId], references: [id])
@@ -47,7 +47,7 @@ model Comment {
   content   String
   createdAt DateTime    @default(now())
   updatedAt DateTime?   @default(now())
-  approbed  Boolean?    @default(false)
+  approbed  Boolean    @default(false)
 
   // relations
   post      Post        @relation(fields: [postId], references: [id])
