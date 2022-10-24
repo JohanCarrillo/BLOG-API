@@ -1,3 +1,3 @@
-import { CreateUserDto } from "./create.user.dto";
+import { Prisma, User } from "@prisma/client";
 
-export interface PatchUserDto extends Partial<CreateUserDto> {}
+export interface PatchUserDto extends Omit<Prisma.UserUpdateInput, "role"> {}

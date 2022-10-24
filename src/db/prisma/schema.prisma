@@ -47,7 +47,7 @@ model Comment {
   content   String
   createdAt DateTime    @default(now())
   updatedAt DateTime?   @default(now())
-  approbed  Boolean    @default(false)
+  approbed  Boolean     @default(false)
 
   // relations
   post      Post        @relation(fields: [postId], references: [id])

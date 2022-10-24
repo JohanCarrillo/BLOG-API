@@ -67,15 +67,11 @@ export class UserService implements CRUD<User> {
 
 	putById = async (
 		userId: string,
-		updateUser: Partial<User>
+		updateUser: PutUserDto
 	): Promise<Partial<User>> => {
 		const user = this.getById(userId);
 		if (user == null) {
-			throw new Prisma.PrismaClientKnownRequestError(
-				"User not found",
-				"P2001",
-				"^4.4.0"
-			);
+			return user;
 		}
 
 		const updatedUser = prisma.user.update({
@@ -91,13 +87,20 @@ export class UserService implements CRUD<User> {
 
 	patchById = async (
 		userId: string,
-		updateUserFields: Partial<User>
+		updateUserFields: PatchUserDto
 	): Promise<Partial<User>> => {
-		const user = prisma.user.update({
+		const user = this.getById(userId);
+		if (user == null) {
+			return user;
+		}
+
+		const updatedUser = prisma.user.update({
 			where: { id: userId },
 			data: { ...updateUserFields },
 			select: returnUserConfig,
 		});
-		return user;
+		return updatedUser;
 	};
+
+	changeMemberToAdmin = async () => {};
 }

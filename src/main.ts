@@ -28,6 +28,9 @@ async function main() {
 	// error logger
 	app.use(expressWinston.errorLogger(loggerOptions));
 
+	// error handler
+	// app.use(errorHandlerFunction)
+
 	const port: number = Number(process.env.SERVER_PORT) || 3000;
 	app.listen(port, (): void => {
 		console.info(`listening on port ${port}`);

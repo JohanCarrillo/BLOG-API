@@ -51,7 +51,7 @@ export class UserController {
 			}
 			res.status(200).json(user);
 		} catch (error) {
-			next();
+			next(error);
 		}
 	};
 
@@ -69,6 +69,7 @@ export class UserController {
 
 	deleteUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
+			// check number of posts and comments
 			const user = await this.userService.deleteById(req.params.userId);
 			if (user == null) {
 				res.status(404).json({ error: ErrorMessages.error404 });

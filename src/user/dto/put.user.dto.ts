@@ -1,3 +1,4 @@
-import { CreateUserDto } from "./create.user.dto";
+import { Prisma, User } from "@prisma/client";
 
-export interface PutUserDto extends Required<CreateUserDto> {}
+// export interface PutUserDto extends Required<Omit<User, "role">> {}
+export interface PutUserDto extends Required<Prisma.UserCreateInput> {}

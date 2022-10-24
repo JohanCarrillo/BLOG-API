@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-const returnUserConfig: Prisma.UserSelect = {
+const returnUserConfig = Prisma.validator<Prisma.UserSelect>()({
 	id: true,
 	email: true,
 	name: true,
@@ -29,6 +29,6 @@ const returnUserConfig: Prisma.UserSelect = {
 			},
 		},
 	},
-};
+});
 
 export default returnUserConfig;
