@@ -22,10 +22,8 @@ export class UserController {
 
 	createUser = async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			// we have to ensure that the req.body we pass fulfills the dto structure
 			const user = await this.userService.create(req.body);
 			res.status(201).json(user);
-			// handle errors for wrong input and server
 		} catch (error) {
 			next(error);
 		}
