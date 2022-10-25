@@ -17,6 +17,7 @@ model User {
   name      String
   password  String?
   role      Role        @default(USER)
+  source    OAuthSource @default(GOOGLE)
   
   // relations
   posts     Post[]
@@ -69,4 +70,9 @@ model Category {
 enum Role {
   USER
   ADMIN
+}
+
+enum OAuthSource {
+  GOOGLE
+  LOCAL
 }

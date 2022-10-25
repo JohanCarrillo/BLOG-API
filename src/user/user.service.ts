@@ -1,6 +1,6 @@
 import debug from "debug";
 import prisma from "../db/prisma/prismaClient";
-import { Prisma, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { CRUD } from "../utils/CRUD.interface";
 import { CreateUserDto } from "./dto/create.user.dto";
 import { PatchUserDto } from "./dto/patch.user.dto";
@@ -78,7 +78,10 @@ export class UserService implements CRUD<User> {
 			where: { id: userId },
 			data: {
 				...user,
-				...updateUser,
+				id: updateUser.id,
+				email: updateUser.email,
+				name: updateUser.name,
+				password: updateUser.password || null,
 			},
 			select: returnUserConfig,
 		});

@@ -11,7 +11,7 @@ const validatePassword: CustomValidator = password => {
 
 const userCreateValidator = [
 	body("name").isAlphanumeric().trim().isLength({ min: 5 }).unescape(),
-	body("email").trim().isEmail().normalizeEmail(),
+	body("email").trim().isEmail().normalizeEmail().isLength({ min: 1 }),
 	body("password").custom(validatePassword),
 	(req: Request, res: Response, next: NextFunction) => {
 		const errors = validationResult(req);

@@ -3,6 +3,7 @@ import { Application } from "express";
 import AbstractRouter from "../utils/abstractRouter";
 import { UserController } from "./user.controller";
 import userCreateValidator from "./middlewares/validators/create.user.validator";
+import userPutValidator from "./middlewares/validators/put.user.validator";
 
 export class UserRoutes extends AbstractRouter {
 	private userController!: UserController;
@@ -35,7 +36,7 @@ export class UserRoutes extends AbstractRouter {
 
 		this.app.put(
 			"/users/:userId",
-			userCreateValidator,
+			userPutValidator,
 			this.userController.putUser
 		);
 
